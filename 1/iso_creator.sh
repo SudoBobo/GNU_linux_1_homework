@@ -1,7 +1,5 @@
 #!/bin/sh
 
-#set -u
-
 OK_MSG="done"
 ERR_MSG="error"
 
