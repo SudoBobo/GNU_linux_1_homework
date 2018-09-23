@@ -26,29 +26,28 @@ done
 # we don't do it. If something would go wrong, mkisofs will return non-zero.
 
 
-# run the command that do the job
-#mkisofs -J -o $ISO_NAME $DIR &>/dev/null
-mkisofs -J -o $ISO_NAME $DIR
-if [[ $? != 0 ]]
+# Run the command that do the job.
+mkisofs -J -o "${ISO_NAME}" "${DIR}" &>/dev/null
+if [[ $? != 0 ]];
 then
-    echo $ERR_MSG && exit 1
+    echo "${ERR_MSG}" && exit 1
 fi
 
-# change user and group of resulting file
+# Change user and group of resulting file.
 if [ -n "${I_USER}" ];
 then
-    chown $I_USER $ISO_NAME &>/dev/null
+    chown "${I_USER}" "${ISO_NAME}" &>/dev/null
 fi
 
 if [ -n "${GROUP}" ];
 then
-    chown $I_USER:$GROUP $ISO_NAME &>/dev/null
+    chown "${I_USER}":"${GROUP}" "${ISO_NAME}" &>/dev/null
 fi
 
-# check user/group changing for errors
+# Check user/group changing for errors.
 if [[ $? != 0 ]]
 then
-    echo $ERR_MSG && exit 1
+    echo "${ERR_MSG}" && exit 1
 fi
 
-echo $OK_MSG && exit 0
+echo "${OK_MSG}" && exit 0
